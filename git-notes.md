@@ -123,39 +123,6 @@ This will retain the stashed item within the list. If we want to take the stash 
 
 `git stash pop`
 
-## What is origin?
-
-It is an alias given to the URL pointing to the default remote repository.
-
-## What is master?
-
-The name of the default branch that git creates for you when first creating a repository. Your local repository has its own master branch, that almost always follows the master of a remote repository.
-
-## What is a branch?
-
-A branch is a variation of your code.
-You create a branch from a repository when you need to work on an additional element. For example let's say you had to work on the email class.
-
-## What is a fork?
-
-A fork is a copy of a repository. Forking a repository allows you to freely experiment with changes without affecting the original project. Most commonly, forks are used to either propose changes to someone else's project or to use someone else's project as a starting point for your own idea.
-
-## Resolve conflict from pull request to Develop
-
-Make sure you're on the branch which you created the pull request from:
-
-`git branch`
-
-`git pull origin Develop`
-
-Edit out the conflicts
-
-`git add <path of the file containing the conflicts>`
-
-`git commit -m "Resolved conflict"`
-
-`git push origin <branch which you created the pull request from>`
-
 ## Cherry picking
 
 Cherry picking can be used to bring code in from a specific commit within a branch (rather than the whole branch). Let's assume we have a master branch and a branch called jimmy. In this example we'd like to bring a commit from the jimmy branch into the master branch, without merging the whole branch. We'll begin by checking out the jimmy branch:
@@ -179,6 +146,39 @@ Now we can cherry pick the commit whose ID we have copied. This will also create
 If you want to cherry pick commits from another branch without committing them to your branch to check if they're OK first use:
 
 `git cherry-pick <IDs> -n`
+
+## Resolve conflict from pull request to Develop
+
+Make sure you're on the branch which you created the pull request from:
+
+`git branch`
+
+`git pull origin Develop`
+
+Edit out the conflicts
+
+`git add <path of the file containing the conflicts>`
+
+`git commit -m "Resolved conflict"`
+
+`git push origin <branch which you created the pull request from>`
+
+## What is origin?
+
+It is an alias given to the URL pointing to the default remote repository.
+
+## What is master?
+
+The name of the default branch that git creates for you when first creating a repository. Your local repository has its own master branch, that almost always follows the master of a remote repository.
+
+## What is a branch?
+
+A branch is a variation of your code.
+You create a branch from a repository when you need to work on an additional element. For example let's say you had to work on the email class.
+
+## What is a fork?
+
+A fork is a copy of a repository. Forking a repository allows you to freely experiment with changes without affecting the original project. Most commonly, forks are used to either propose changes to someone else's project or to use someone else's project as a starting point for your own idea.
 
 ## What's the difference between a branch and a fork?
 
