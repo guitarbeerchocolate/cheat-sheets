@@ -138,9 +138,9 @@
 
 ## Process commands
 
-`bg	<PID>` To send a process to the background.
+`bg <PID>` To send a process to the background.
 
-`fg	<PID>` To run a stopped process in the foreground.
+`fg <PID>` To run a stopped process in the foreground.
 
 `top` Details on all Active Processes.
 
