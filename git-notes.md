@@ -156,7 +156,7 @@ Edit out the conflicts
 
 `git push origin <branch which you created the pull request from>`
 
-# Cherry picking
+## Cherry picking
 
 Cherry picking can be used to bring code in from a specific commit within a branch (rather than the whole branch). Let's assume we have a master branch and a branch called jimmy. In this example we'd like to bring a commit from the jimmy branch into the master branch, without merging the whole branch. We'll begin by checking out the jimmy branch:
 
