@@ -88,6 +88,18 @@ To update your local repository to the newest commit use the command:
 
 `git remote`
 
+## Reset changes
+
+Resetting changes means goinf back to a previous commit.
+
+This command will display the commit IDs of the previous commits:
+
+`git log --oneline`
+
+This command will reset the head to one of the previous IDs and undo all the changes since that commit:
+
+`git reset <one of the IDs> --hard`
+
 ## Revert merges
 
 This command will take you to the last merge:
