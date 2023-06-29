@@ -105,58 +105,67 @@ Third is not to use array_map at all.
 
 ### Abstract classes and methods
 
-These are when the parent class has a named method, but need its child class(es) to fill out the tasks. E.g.
+These are when the parent class has a named method, but need its child class(es) to fill out the tasks.
 
-    abstract class Car {
-        public $name;
-        public function __construct($name) {
-            $this->name = $name;
+Consider using abstract classes if any of these statements apply to your situation:
+
+1.  You want to share code among several closely related classes.
+2.  You expect that classes that extend your abstract class have many common methods or fields or require access modifiers other than public (such as protected and private).
+3.  You want to declare non-static or non-final fields. This enables you to define methods that can access and modify the state of the object to which they belong.
+
+        abstract class Car {
+            public $name;
+            public function __construct($name) {
+                $this->name = $name;
+            }
+            abstract public function intro() : string;
         }
-        abstract public function intro() : string;
-    }
 
-    class Audi extends Car {
-        public function intro() : string {
-            return "Choose German quality! I'm an $this->name!";
+        class Audi extends Car {
+            public function intro() : string {
+                return "Choose German quality! I'm an $this->name!";
+            }
         }
-    }
 
-    class Volvo extends Car {
-        public function intro() : string {
-            return "Proud to be Swedish! I'm a $this->name!";
+        class Volvo extends Car {
+            public function intro() : string {
+                return "Proud to be Swedish! I'm a $this->name!";
+            }
         }
-    }
 
-    $audi = new audi("Audi");
-    echo $audi->intro();
+        $audi = new audi("Audi");
+        echo $audi->intro();
 
-    $volvo = new volvo("Volvo");
-    echo $volvo->intro();
+        $volvo = new volvo("Volvo");
+        echo $volvo->intro();
 
 ### Interfaces
 
 Similar to abstract classes except:
 
-Interfaces cannot have properties.
+- Interfaces cannot have properties.
+- All interface methods must be public.
+- All methods in an interface are abstract (no code).
+- Classes can implement an interface while inheriting from another class at the same time.
 
-All interface methods must be public.
+Consider using interfaces if any of these statements apply to your situation:
 
-All methods in an interface are abstract (no code).
+1.  You expect that unrelated classes would implement your interface. For example, the interfaces Comparable and Cloneable are implemented by many unrelated classes.
+2.  You want to specify the behavior of a particular data type, but not concerned about who implements its behavior.
+3.  You want to take advantage of multiple inheritances.
 
-Classes can implement an interface while inheriting from another class at the same time.
-
-    interface Animal {
-        public function makeSound();
-    }
-
-    class Cat implements Animal {
-        public function makeSound() {
-            echo "Meow";
+        interface Animal {
+            public function makeSound();
         }
-    }
 
-    $animal = new Cat();
-    $animal->makeSound();
+        class Cat implements Animal {
+            public function makeSound() {
+                echo "Meow";
+            }
+        }
+
+        $animal = new Cat();
+        $animal->makeSound();
 
 ### Multiple inheritance using `traits`
 
@@ -184,6 +193,8 @@ Classes can implement an interface while inheriting from another class at the sa
 
 Static methods can be called directly - without creating an instance of the class first.
 
+Static methods are often utility methods found in System, Wrapper and Collections classes that are used because they can be more efficient.
+
     class greeting {
         public static function welcome() {
             echo "Hello World!";
@@ -209,6 +220,8 @@ A static method can be accessed from a method in the same class using the `self`
 ### Static Properties
 
 Static properties can be called directly - without creating an instance of a class.
+
+Use a static property when its value will be shared with every instance of its class.
 
     class pi {
         public static $value = 3.14159;
