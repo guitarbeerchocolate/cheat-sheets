@@ -175,6 +175,10 @@ Edit out the conflicts
 
 `git push origin <branch which you created the pull request from>`
 
+## Keep your local branch up-to-date with remote 'develop'
+
+`git pull origin develop`
+
 ## What is origin?
 
 It is an alias given to the URL pointing to the default remote repository.
