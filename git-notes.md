@@ -179,6 +179,10 @@ Edit out the conflicts
 
 `git pull origin develop`
 
+## Push the changes to the current branch of your forked repository:
+
+`git push --set-upstream origin new-branch`
+
 ## What is origin?
 
 It is an alias given to the URL pointing to the default remote repository.
