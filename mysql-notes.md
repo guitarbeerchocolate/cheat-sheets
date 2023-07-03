@@ -244,29 +244,52 @@ Change the output of the column name using column alias:
     FROM
         table_name;
 
-Query data from multiple tables using inner join:
+### Joins
 
-    SELECT select_list
-    FROM table1
-    INNER JOIN table2 ON condition;
+#### Inner Join
 
-Query data from multiple tables using left join:
+The INNER JOIN keyword selects records that have matching values in both tables.
 
-    SELECT select_list
-    FROM table1
-    LEFT JOIN table2 ON condition;
+    SELECT column_name(s)
+    FROM left-table
+    INNER JOIN right-table
+    ON left-table.column_name = right-table.column_name;
 
-Query data from multiple tables using right join:
+#### Left Join
 
-    SELECT select_list
-    FROM table1
-    RIGHT JOIN table2 ON condition;
+The LEFT JOIN keyword returns all records from the left-table, and the matching records from the right-table. The result is 0 records from the right-table, if there is no match.
 
-Make a Cartesian product of rows:
+    SELECT column_name(s)
+    FROM left-table
+    LEFT JOIN right-table
+    ON left-table.column_name = right-table.column_name;
 
-    SELECT select_list
-    FROM table1
-    CROSS JOIN table2;
+#### Right Join
+
+The RIGHT JOIN keyword returns all records from the right-table, and the matching records from the left-table. The result is 0 records from the left-table, if there is no match.
+
+    SELECT column_name(s)
+    FROM left-table
+    RIGHT JOIN right-table
+    ON left-table.column_name = right-table.column_name;
+
+#### Full Join
+
+The FULL OUTER JOIN keyword returns all records when there is a match in left (table1) or right (table2) table records.
+
+    SELECT column_name(s)
+    FROM left-table
+    FULL OUTER JOIN right-table
+    ON left-table.column_name = right-table.column_name
+    WHERE condition;
+
+#### Self join
+
+A self join is a regular join, but the table is joined with itself.
+
+    SELECT column_name(s)
+    FROM table1 T1, table1 T2
+    WHERE condition;
 
 Counting rows in a table.
 
@@ -363,3 +386,17 @@ Text search using a regular expression with RLIKE operator.
     SELECT select_list
     FROM table_name
     WHERE column RLIKE 'regular_expression';
+
+## SQL Optimisation
+
+SET STATISTICS IO ON; See how many logical and physical reads are made when a query is executed.
+
+1. Indexing: Ensure proper indexing for quick access to the database.
+2. Select query: Specify the columns in SELECT query instead of SELECT\* to avoid extra fetching load on the database.
+3. Avoid Loops
+4. Matching records: Use EXISTS() for matching if the record exists.
+5. Avoid sub queries
+6. Use wildcards (e.g. %xx%) wisely
+7. Avoid using function at Right Hand Side of the operator.
+8. Use LIMIT where possible
+9. Use the WHERE clause instead of HAVING for primary filters.
