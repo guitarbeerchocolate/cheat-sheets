@@ -60,3 +60,34 @@ Follow up: "Can you change the expression to check for email addresses?".
 ### Convert from one language to another
 
 E.g. "Can you convert this PHP function to python: <your PHP function>".
+
+## Using the Code Interpreter Plugin
+
+### Analise Data
+
+E.g. "Can you explain the uploaded data in simple terms...", Then use the "Upload file" plugin button in ChatGPT.
+Follow up: "Whate are the trends in this data?".
+
+### Visualisations
+
+E.g. "Can you create 4 visualisations from this dataset?".
+ChatGPT should give you graphs you can download.
+
+### Working with Images
+
+E.g. "Crop the attached image to 400x400 pixels".
+ChatGPT should give you the converted image to download.
+E.g. "Give me a CSS palette for this image".
+ChatGPT should give you the CSS.
+
+### Converting files
+
+E.g. "Can you convert this file to a .ods file?".
+
+### Create QR codes
+
+E.g. "Create a QR code to take me to https://effectivewebdesigns.blogspot.com/".
+
+### Predications
+
+E.g. "What predictions could you make on this data set?".
