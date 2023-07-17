@@ -47,3 +47,16 @@ E.g. "I need a REST API written in Rust. It should have products with an id, nam
 ### UIs & Layouts
 
 E.g. "I need the html and css for the homepage of a blog with a navbar that has a logo area with the text "My Blog", a hero area with some dummy text and a background image from unsplash and 3 cards with some sample posts. Make the color scheme have some light blues and greens".
+
+### Optimise code
+
+E.g. "Can you optimise this code:<add your code here>".
+
+### Understanding code
+
+E.g. "Can you explain this regular expression: <your regular expression>".
+Follow up: "Can you change the expression to check for email addresses?".
+
+### Convert from one language to another
+
+E.g. "Can you convert this PHP function to python: <your PHP function>".
