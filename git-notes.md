@@ -8,6 +8,16 @@ Create a new directory, open it and perform a
 
 to create a new git repository.
 
+## Find your username and password information
+
+`git config --list --show-origin`
+
+## Set your global identity
+
+`git config --global user.name "Mick Redman"`
+
+`git config --global user.email "mick.redman@example.com"`
+
 ## Clone a remote repository
 
 In other words, create a working directory (or copy, or version) of a remote repository.
@@ -64,6 +74,12 @@ First checkout the branch you'd like to merge into, then:
 
 `git branch -d email`
 
+## Delete a (remote) branch
+
+NB: This should rarely (very) need to be done.
+
+`git push origin -d <branch>`
+
 ## Use the 'push' command to send your commits to the remote repository
 
 First check your config file. This should be in your working directory, within .git/config
@@ -73,6 +89,10 @@ You need to add the username and password to the url under '[remote "origin"]'.
 Once you're all set up you can use the command:
 
 `git push origin master`
+
+Push your new branch up to remote when just created
+
+`git push --set-upstream origin <ne banch name>`
 
 ## Push your branch to the remote repository
 
@@ -99,6 +119,10 @@ This command will display the commit IDs of the previous commits:
 This command will reset the head to one of the previous IDs and undo all the changes since that commit:
 
 `git reset <one of the IDs> --hard`
+
+## To restore all files to what they were at the last commit
+
+`git restore .``
 
 ## Revert merges
 
