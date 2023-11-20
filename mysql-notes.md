@@ -12,10 +12,6 @@ Exit mysql command-line client:
 
 `exit;`
 
-Export data using mysqldump tool
-
-`mysqldump -u [username] -p [database] > data_backup.sql;`
-
 To clear MySQL screen console window on Linux, you use the following command:
 
 `mysql> system clear;`
@@ -38,7 +34,7 @@ Drop a database with a specified name permanently. All physical files associated
 
 Show all available databases in the current MySQL database server
 
-`SHOW DATABASE;`
+`SHOW DATABASES;`
 
 ## Working with tables
 
@@ -104,6 +100,24 @@ Create a unique index:
 
     CREATE UNIQUE INDEX index_name
     ON table_name (column,...);
+
+## Aggregation Functions
+
+Calculate Average (AVG)
+
+`SELECT AVG(column) FROM <table_name>;`
+
+Calculate Sum (SUM)
+
+`SELECT SUM(column) FROM <table_name>;`
+
+Find Maximum (MAX)
+
+`SELECT MAX(column) FROM <table_name>;`
+
+Find Minimum (MIN)
+
+`SELECT MIN(column) FROM <table_name>;`
 
 ## Working with views
 
@@ -386,6 +400,52 @@ Text search using a regular expression with RLIKE operator.
     SELECT select_list
     FROM table_name
     WHERE column RLIKE 'regular_expression';
+
+## Import and Export Data
+
+Import Data from SQL File
+
+`mysql -u <username> -p <database_name> < file.sql`
+
+Export Data to SQL File
+
+`mysqldump -u <username> -p <database_name> > file.sql`
+
+## User Management
+
+Create a New User
+
+`CREATE USER '<username>'@'localhost' IDENTIFIED BY '<password>';`
+
+Grant Privileges to User
+
+`GRANT ALL PRIVILEGES ON <database_name>.* TO '<username>'@'localhost';`
+
+Revoke Privileges from User
+
+`REVOKE ALL PRIVILEGES ON <database_name>.* FROM '<username>'@'localhost';`
+
+Remove User
+
+`DROP USER '<username>'@'localhost';`
+
+## MySQL Server
+
+Start MySQL Server
+
+`sudo service mysql start`
+
+Stop MySQL Server
+
+`sudo service mysql stop`
+
+Restart MySQL Server
+
+`sudo service mysql restart`
+
+Show MySQL Version
+
+`SELECT VERSION();`
 
 ## SQL Optimisation
 
