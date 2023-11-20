@@ -83,6 +83,10 @@ Check the logs of all the docker containers with the corresponding contained id 
 
 ## Docker compose
 
+Build and Start Containers
+
+`docker-compose up --build`
+
 Bring up all services listed in docker-compose.yml file.
 
 `docker-compose up -d`
@@ -98,6 +102,14 @@ Bring up "node" service listed in docker-compose.yml file.
 Clean up all services listed in docker-compose.yml file
 
 `docker-compose rm -f`
+
+Restart a Service
+
+`docker-compose restart <service_name>`
+
+Show Containers Logs (in detached mode)
+
+`docker-compose logs -f`
 
 Example docker-compose.yml
 
