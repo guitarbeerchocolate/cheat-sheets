@@ -40,7 +40,7 @@ You will need to add more explanation here.
 
 `git status`
 
-## Add files from the Working directory to the 'Index' or 'staging' area
+## Add (stage) files from the Working directory to the 'Index' or 'staging' area
 
 You can do this either by filename E.g.
 
@@ -48,7 +48,9 @@ You can do this either by filename E.g.
 
 Or you can use wildcards E.g.
 
-`git add *`.
+`git add *`
+
+`git add .`
 
 You can check that the index has been updated using the command
 
@@ -60,9 +62,21 @@ Use the following command:
 
 `git commit -m "Your message"`
 
+## List branches
+
+`git branch`
+
+## List Remote Repositories
+
+`git remote -v`
+
 ## Switch to a branch
 
 `git checkout master`
+
+## Pull a remote branch
+
+`git switch <branch name>`
 
 ## Merge a branch
 
@@ -122,7 +136,7 @@ This command will reset the head to one of the previous IDs and undo all the cha
 
 ## To restore all files to what they were at the last commit
 
-`git restore .``
+`git restore .`
 
 ## Revert merges
 
