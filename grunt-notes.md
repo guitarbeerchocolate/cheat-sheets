@@ -1,4 +1,4 @@
-# Grun cheat sheet
+# Grunt cheat sheet
 
 ## Introduction to Grunt
 
