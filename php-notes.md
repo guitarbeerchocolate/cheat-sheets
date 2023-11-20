@@ -24,13 +24,190 @@ and it should auto complete.
 
 ## Constants
 
-    define("GREETING", "Welcome to W3Schools.com!");
-    echo GREETING;
+```
+define("GREETING", "Welcome to W3Schools.com!");
+echo GREETING;
+```
 
 ## Operators
 
 Raise $x to the power of $y
 `$x \*\* $y`
+
+## Conditional Statements
+
+If Statement
+
+```
+if (condition) {
+   // Code to execute if the condition is true
+}
+```
+
+Else Statement
+
+```
+if (condition) {
+   // Code to execute if the condition is true
+} else {
+   // Code to execute if the condition is false
+}
+```
+
+Switch Statement
+
+```
+switch (variable) {
+   case value1:
+      // Code for case 1
+      break;
+   case value2:
+      // Code for case 2
+      break;
+   default:
+      // Default code
+}
+```
+
+## Loops
+
+While Loop
+
+```
+while (condition) {
+   // Code to execute while the condition is true
+}
+```
+
+For Loop
+
+```
+for ($i = 0; $i < 5; $i++) {
+   // Code to execute in each iteration
+}
+```
+
+Foreach Loop
+
+```
+foreach ($array as $item) {
+   // Code to execute for each item in the array
+}
+```
+
+## Functions
+
+Define a Function
+
+```
+function functionName($param1, $param2) {
+   // Code to execute
+   return $result;
+}
+```
+
+Call a Function
+
+```
+$result = functionName($value1, $value2);
+```
+
+## Arrays
+
+Create an Array
+
+```
+$array = array("item1", "item2", "item3");
+```
+
+Access Array Elements
+
+```
+$value = $array[0];
+```
+
+Add an Element to an Array
+
+```
+$array[] = "new_item";
+```
+
+Associative Arrays
+
+```
+$assoc_array = array("key1" => "value1", "key2" => "value2");
+```
+
+## Superglobals
+
+$\_GET
+
+```
+$value = $_GET["parameter_name"];
+```
+
+$\_POST
+
+```
+$value = $_POST["form_field_name"];
+```
+
+$\_SESSION
+
+```
+session_start();
+$_SESSION["variable_name"] = $value;
+```
+
+$\_COOKIE
+
+```
+$value = $_COOKIE["cookie_name"];
+```
+
+## Error Handling
+
+Error Reporting
+
+```
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+```
+
+## Try-Catch
+
+```
+try {
+   // Code that may throw an exception
+} catch (Exception $e) {
+   // Code to handle the exception
+}
+```
+
+## File Handling
+
+Read File Contents
+
+```
+$file_contents = file_get_contents("file.txt");
+```
+
+Write to a File
+
+```
+file_put_contents("file.txt", "Content to write");
+```
+
+### Include Another PHP File
+
+```
+include "filename.php";
+```
+
+### Require Another PHP File
+
+```
+require "filename.php";
+```
 
 ### Ternary
 
