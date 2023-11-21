@@ -59,32 +59,74 @@
 
   - Choose legible fonts and maintain hierarchy.
 
+  ```
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  ```
+
 - **Color Palette:**
 
   - Use a consistent color scheme for branding and visual appeal.
+
+  ```
+  color: #007bff; /* Primary Color */
+  background-color: #f8f9fa; /* Background Color */
+  ```
 
 - **Buttons:**
 
   - Design buttons that are easy to click and understand.
 
+  ```
+  <button class="btn btn-primary">Submit</button>
+  ```
+
 - **Icons:**
 
   - Use icons for visual communication and navigation.
+
+  ```
+  <i class="fas fa-heart"></i> Like
+  ```
 
 - **Forms:**
 
   - Create user-friendly forms with labels and error messages.
 
+  ```
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="username">
+  <div class="error">Please enter a valid username.</div>
+  ```
+
 - **Navigation:**
 
   - Design intuitive navigation menus and links.
+
+  ```
+  <ul class="nav">
+   <li><a href="/">Home</a></li>
+   <li><a href="/about">About</a></li>
+   <li><a href="/contact">Contact</a></li>
+  </ul>
+
+  ```
 
 - **Images and Media:**
 
   - Use images and media to enhance content.
 
+  ```
+  <img src="image.jpg" alt="Image Description">
+  ```
+
 - **Feedback:**
   - Provide feedback for user actions and errors.
+  ```
+  <div class="success">Form submitted successfully!</div>
+  <div class="error">An error occurred. Please try again.</div>
+  ```
 
 ## UI Tools
 
@@ -103,6 +145,13 @@
 - **Grid Layouts:** Use grids for responsive layouts.
 
 - **Media Queries:** Apply CSS media queries for different screen sizes.
+
+```
+/* Example Media Query */
+@media (max-width: 768px) {
+  /* Styles for smaller screens */
+}
+```
 
 ## UI Best Practices
 
