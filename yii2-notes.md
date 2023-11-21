@@ -8,17 +8,48 @@
 
 - **Installation:** Install Yii using Composer or download the Yii application template.
 
+  ```
+  # Install Yii2 via Composer
+  composer create-project --prefer-dist yiisoft/yii2-app-basic myapp
+  ```
+
 - **Configuration:** Configure the application in the `config` directory.
 
 - **Command-Line Tools:** Use Yii console commands for tasks like migrations and code generation.
+
+  ```
+  # Create a new migration
+  yii migrate/create create_table_name
+  ```
 
 ## MVC Architecture
 
 - **Model:** Represents the data and business logic.
 
+```
+// Example model definition
+class Post extends \yii\db\ActiveRecord
+{
+    // ...
+}
+```
+
 - **View:** Displays data and handles user interface.
 
+```
+// Example view rendering
+<?= $this->render('view_name', ['model' => $model]) ?>
+```
+
 - **Controller:** Handles user requests, processes input, and interacts with models and views.
+
+```
+// Example controller action
+public function actionIndex()
+{
+    // ...
+}
+```
 
 ## Yii Components
 
@@ -34,7 +65,20 @@
 
 - **URL Rules:** Define custom URL rules for routing.
 
+```
+// Example URL rule configuration
+'rules' => [
+    'post/<id:\d+>' => 'post/view',
+],
+```
+
 - **Pretty URLs:** Configure clean and user-friendly URLs.
+
+```
+// Example URL manager configuration
+'enablePrettyUrl' => true,
+'showScriptName' => false,
+```
 
 ## Database Access
 
@@ -44,11 +88,37 @@
 
 - **Query Builder:** Build database queries programmatically.
 
+```
+// Example database query using Query Builder
+$query = (new \yii\db\Query())
+    ->select(['id', 'title'])
+    ->from('post')
+    ->where(['status' => 'published'])
+    ->orderBy('created_at DESC')
+    ->limit(10);
+```
+
 ## Authentication and Authorization
 
 - **User:** Implement user authentication and authorization.
 
+```
+// Example user authentication
+if (\Yii::$app->user->login($user)) {
+    // User is logged in
+}
+```
+
 - **RBAC:** Role-Based Access Control for fine-grained permissions.
+
+```
+// Example RBAC configuration
+'components' => [
+    'authManager' => [
+        'class' => 'yii\rbac\DbManager',
+    ],
+],
+```
 
 ## Forms and Validation
 
@@ -56,25 +126,78 @@
 
 - **Form Widgets:** Use widgets for form elements.
 
+```
+// Example form widget usage
+<?= $form->field($model, 'username')->textInput() ?>
+```
+
 - **Validation Rules:** Define validation rules for model attributes.
+
+```
+// Example validation rule
+[['username'], 'required'],
+[['email'], 'email'],
+```
 
 ## Caching
 
 - **Data Caching:** Cache data to improve application performance.
 
+```
+// Example caching data
+Yii::$app->cache->set('key', 'value', 3600); // Cache for 1 hour
+```
+
 - **Fragment Caching:** Cache parts of views.
+
+```
+// Example fragment caching
+<?php if ($this->beginCache('cacheKey')): ?>
+    <!-- Cached content here -->
+    <?php $this->endCache(); ?>
+<?php endif; ?>
+```
 
 ## Error Handling
 
 - **Error Pages:** Customize error pages for different HTTP status codes.
 
+```
+// Example error page configuration
+'errorHandler' => [
+    'errorAction' => 'site/error',
+],
+```
+
 - **Logging:** Configure application logging.
+
+```
+// Example logging configuration
+'log' => [
+    'targets' => [
+        [
+            'class' => 'yii\log\FileTarget',
+            'levels' => ['error', 'warning'],
+        ],
+    ],
+],
+```
 
 ## Internationalization (i18n)
 
 - **Translations:** Translate application messages and content.
 
+```
+// Example translation usage
+Yii::t('app', 'Hello, {name}!', ['name' => 'John']);
+```
+
 - **Localization:** Format numbers, dates, and times for different locales.
+
+```
+// Example localization
+Yii::$app->formatter->asDate('2023-11-16', 'long');
+```
 
 ## Yii2 Advanced Template
 
@@ -88,9 +211,22 @@
 
 - **Cross-Site Scripting (XSS) Prevention:** Use the `Html::encode()` method.
 
+```
+// Example XSS prevention
+<?= \yii\helpers\Html::encode($data) ?>
+```
+
 - **Cross-Site Request Forgery (CSRF) Protection:** Enable CSRF tokens.
 
 - **SQL Injection Prevention:** Use parameterized queries and Active Record.
+
+```
+// Example parameterized query
+$users = \app\models\User::find()
+    ->where(['status' => 1])
+    ->andWhere(['like', 'name', 'John'])
+    ->all();
+```
 
 ## Yii Resources
 
@@ -125,6 +261,11 @@ Caching: If you want to implement caching for specific controller actions, creat
 ### Widgets
 
 Reusability: If you have a UI component that is used across multiple views or pages within your application, creating a Yii2 widget can help encapsulate and reuse that component. Widgets allow you to define the rendering logic, configuration options, and any associated behavior in a self-contained and reusable package.
+
+```
+// Example Yii2 widget definition
+<?= \app\widgets\MyWidget::widget(['param' => 'value']) ?>
+```
 
 Complex UI Elements: If you need to render complex UI elements, such as calendars, charts, grids, or file uploaders, creating a Yii2 widget can simplify the implementation and provide a clean interface for using those elements. Widgets abstract the complexity of the underlying HTML, CSS, and JavaScript code, making it easier to integrate and customize such elements in your views.
 
