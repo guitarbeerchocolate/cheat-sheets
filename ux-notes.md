@@ -50,6 +50,18 @@
 
    - Create a visually appealing and consistent design.
 
+   ```
+   /* Example CSS for a visually appealing button */
+   .btn-primary {
+     background-color: #007bff;
+     color: #fff;
+     padding: 10px 20px;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+   }
+   ```
+
 9. **Development Collaboration:**
 
    - Collaborate with developers to implement the design.
@@ -71,6 +83,16 @@
 
   - Create intuitive navigation menus and user journeys.
 
+  ```
+  <!-- Example navigation menu -->
+  <ul class="nav">
+     <li><a href="/">Home</a></li>
+     <li><a href="/about">About</a></li>
+     <li><a href="/contact">Contact</a></li>
+  </ul>
+
+  ```
+
 - **Content:**
 
   - Provide relevant and valuable content for users.
@@ -79,9 +101,19 @@
 
   - Design user-friendly and efficient forms.
 
+  ```
+  <!-- Example form input -->
+  <input type="text" id="username" name="username" placeholder="Username">
+  ```
+
 - **Feedback and Notifications:**
 
   - Offer informative feedback and notifications.
+
+  ```
+  <!-- Example success message -->
+  <div class="success-message">Form submitted successfully!</div>
+  ```
 
 - **Interactions:**
 
@@ -89,6 +121,13 @@
 
 - **Visual Hierarchy:**
   - Use design elements to guide user attention.
+  ```
+  /* Example CSS for emphasizing important content */
+  .important-text {
+    font-weight: bold;
+    color: #007bff;
+  }
+  ```
 
 ## UX Tools
 
