@@ -21,9 +21,22 @@
 
   - Install the SSL certificate on the web server.
 
+```
+# Example command for installing an SSL certificate with Apache
+sudo a2ensite your-ssl-site.conf
+sudo service apache2 reload
+```
+
 - **HTTP to HTTPS Redirect:**
 
   - Redirect HTTP traffic to HTTPS for secure connections.
+
+```
+# Example command for setting up an HTTP to HTTPS redirect with Apache
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+```
 
 - **Mixed Content:**
   - Avoid mixed content (HTTP and HTTPS elements on the same page).
@@ -55,6 +68,11 @@
 - **Certificate Expiration:**
 
   - SSL certificates have an expiration date. Renew before expiration.
+
+```
+# Example command for renewing a Let's Encrypt certificate
+sudo certbot renew
+```
 
 - **Certificate Revocation:**
 
