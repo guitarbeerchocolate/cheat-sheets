@@ -15,79 +15,118 @@ Key Features: Moodle offers features like course management, quizzes, forums, fi
 ## Course Management
 
 - Create a Course: As an administrator or teacher, navigate to "Site administration" > "Courses" > "Manage courses and categories" to create a new course.
+
+  - **User Journey:** An administrator logs in, goes to the "Site administration" section, and creates a new course by providing course details, such as course name, description, and enrollment methods.
+
 - Enroll Students: Add students to a course by using enrollment methods like manual enrollment, self-enrollment, or LDAP enrollment.
+  - **User Journey:** A teacher logs in, accesses the course, and enrolls students by specifying their usernames or using a self-enrollment method.
 
 ## Adding Content
 
 - Resources: Add resources like files, folders, URLs, labels, and pages to your course.
+
+  - **User Journey:** A teacher adds a PDF resource to the course module by uploading the file and providing a description for students to access.
+
 - Activities: Include interactive activities like quizzes, assignments, forums, surveys, and more.
+  - **User Journey:** A teacher creates a quiz activity with multiple-choice questions and sets the due date and grading options.
 
 ## Grading
 
 - Gradebook: Use the Moodle gradebook to set up and manage grading for assignments, quizzes, and other assessments.
+
+  - **User Journey:** A teacher accesses the gradebook, sets up categories, and assigns grades to students based on their quiz performance.
+
 - Grading Scales: Define custom grading scales or use predefined scales.
+
+  - **User Journey:** An administrator configures a custom grading scale for specific courses, such as "Excellent," "Good," "Satisfactory," etc.
+
 - Rubrics: Create rubrics to assess and grade student work.
+  - **User Journey:** A teacher creates a rubric for an assignment, specifying criteria and scoring levels for evaluation.
 
 ## Communication
 
 - Forums: Create discussion forums for students to communicate and collaborate.
+
+  - **User Journey:** A teacher creates a discussion forum within the course, and students can post and reply to discussions.
+
 - Announcements: Post course announcements to inform students about important updates.
+
+  - **User Journey:** A teacher posts an announcement on the course homepage to notify students of an upcoming assignment submission deadline.
+
 - Messaging: Use the messaging system to send messages to students or other users.
+  - **User Journey:** A student sends a private message to a classmate for clarification on an assignment.
 
 ## Quizzes and Assessments
 
 - Create a Quiz: Build quizzes with various question types, including multiple-choice, true/false, short answer, and essay questions.
+
+  - **User Journey:** A teacher creates a quiz with multiple-choice questions, defines time limits, and sets quiz availability.
+
 - Randomize Questions: Randomly select questions from a question bank to create unique quizzes.
+
+  - **User Journey:** A teacher configures the quiz to draw questions randomly from a question bank, ensuring each student gets a different set of questions.
+
 - Grading Options: Choose different grading methods for quizzes, such as highest grade, average grade, or last attempt.
+  - **User Journey:** A teacher selects "Highest grade" as the grading method for a quiz to consider only the highest score achieved by each student.
 
 ## Customization
 
 - Themes: Customize the appearance of your Moodle site with themes or create custom themes.
+  - **User Journey:** An administrator creates a custom theme with a unique color scheme and applies it to the Moodle site.
 - Plugins: Extend Moodle's functionality by installing and configuring plugins.
+  - **User Journey:** An administrator installs a plugin for integrating with an external learning resource, enhancing the platform's capabilities.
 
 ### Creating a basic moodle theme
 
-Create a Custom CSS File
-Create a custom CSS file (e.g., custom.css) where you will define the styles for your Moodle theme.
+#### Create a Custom CSS File
 
-In your custom.css, define the colors and styles based on your color scheme. For example:
+1. Create a custom CSS file (e.g., custom.css) where you will define the styles for your Moodle theme.
 
-```
-/* Primary color for headings and links */
-h1, h2, h3, h4, h5, h6, a {
-  color: #800080;
-}
+2. In your custom.css, define the colors and styles based on your color scheme.
 
-/* Secondary color for backgrounds and text */
-body {
-  background-color: #ffffff;
-  color: #333333;
-}
+   ```css
+   /* Primary color for headings and links */
+   h1,
+   h2,
+   h3,
+   h4,
+   h5,
+   h6,
+   a {
+     color: #800080;
+   }
 
-/* Custom styles for buttons */
-button, .btn {
-  background-color: #800080;
-  color: #ffffff;
-  border: none;
-}
+   /* Secondary color for backgrounds and text */
+   body {
+     background-color: #ffffff;
+     color: #333333;
+   }
 
-/* Additional custom styles for various Moodle elements */
-/* Add your styles here */
-```
+   /* Custom styles for buttons */
+   button,
+   .btn {
+     background-color: #800080;
+     color: #ffffff;
+     border: none;
+   }
 
-#### Upload Your Custom Theme
+   /* Additional custom styles for various Moodle elements */
+   /* Add your styles here */
+   ```
 
-Log in to your Moodle site as an administrator.
+3. Upload Your Custom Theme
 
-Navigate to "Site administration" > "Plugins" > "Themes" > "Theme selector."
+- **User Journey:** Log in to your Moodle site as an administrator.
 
-Under "Theme selector," click on "Upload a new theme."
+  Navigate to "Site administration" > "Plugins" > "Themes" > "Theme selector."
 
-Upload the custom theme folder containing your custom.css and other theme files.
+  Under "Theme selector," click on "Upload a new theme."
 
-#### Configure Moodle to Use Your Custom Theme
+  Upload the custom theme folder containing your custom.css and other theme files.
 
-After uploading the theme, you should see it listed in the theme selector.
+4. Configure Moodle to Use Your Custom Theme
+
+- **User Journey:** After uploading the theme, you should see it listed in the theme selector.
 
 Select your custom theme from the list and click "Save changes."
 
@@ -132,7 +171,7 @@ Inside the db directory, create a install.php file to define the database tables
 ```
 <?php
 function xmldb_block_hello_username_install() {
-    // No database changes required for this block.
+  // No database changes required for this block.
 }
 ```
 
@@ -174,7 +213,7 @@ $string['pluginname'] = 'Hello Username'; // Your block name.
 
 Log in to your Moodle site as an administrator.
 
-Go to "Site administration" > "Notifications" to install and upgrade your plugin.
+- **User Journey:** Go to "Site administration" > "Notifications" to install and upgrade your plugin.
 
 ### Add the Block to a Course
 
