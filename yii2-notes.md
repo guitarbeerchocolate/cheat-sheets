@@ -1,4 +1,104 @@
-# Yii2 notes
+# Yii Framework Cheat Sheet
+
+## Introduction to Yii
+
+- **What is Yii?** Yii is a high-performance, component-based PHP framework for building web applications. It follows the Model-View-Controller (MVC) architecture.
+
+## Yii Basics
+
+- **Installation:** Install Yii using Composer or download the Yii application template.
+
+- **Configuration:** Configure the application in the `config` directory.
+
+- **Command-Line Tools:** Use Yii console commands for tasks like migrations and code generation.
+
+## MVC Architecture
+
+- **Model:** Represents the data and business logic.
+
+- **View:** Displays data and handles user interface.
+
+- **Controller:** Handles user requests, processes input, and interacts with models and views.
+
+## Yii Components
+
+- **Widgets:** Reusable UI elements like grids, forms, and menus.
+
+- **Validators:** Validate user input and model attributes.
+
+- **Data Providers:** Provide data to widgets and views.
+
+- **Extensions:** Extend Yii functionality with third-party libraries.
+
+## Routing
+
+- **URL Rules:** Define custom URL rules for routing.
+
+- **Pretty URLs:** Configure clean and user-friendly URLs.
+
+## Database Access
+
+- **Active Record:** Yii's implementation of the Active Record pattern for database access.
+
+- **Database Migrations:** Manage database schema changes.
+
+- **Query Builder:** Build database queries programmatically.
+
+## Authentication and Authorization
+
+- **User:** Implement user authentication and authorization.
+
+- **RBAC:** Role-Based Access Control for fine-grained permissions.
+
+## Forms and Validation
+
+- **Form Models:** Create form models for handling user input.
+
+- **Form Widgets:** Use widgets for form elements.
+
+- **Validation Rules:** Define validation rules for model attributes.
+
+## Caching
+
+- **Data Caching:** Cache data to improve application performance.
+
+- **Fragment Caching:** Cache parts of views.
+
+## Error Handling
+
+- **Error Pages:** Customize error pages for different HTTP status codes.
+
+- **Logging:** Configure application logging.
+
+## Internationalization (i18n)
+
+- **Translations:** Translate application messages and content.
+
+- **Localization:** Format numbers, dates, and times for different locales.
+
+## Yii2 Advanced Template
+
+- **Frontend and Backend:** Divide your application into frontend and backend modules.
+
+- **API:** Build RESTful APIs with the provided template.
+
+- **User Management:** Includes user registration and management.
+
+## Security Best Practices
+
+- **Cross-Site Scripting (XSS) Prevention:** Use the `Html::encode()` method.
+
+- **Cross-Site Request Forgery (CSRF) Protection:** Enable CSRF tokens.
+
+- **SQL Injection Prevention:** Use parameterized queries and Active Record.
+
+## Yii Resources
+
+- [Yii Framework Official Website](https://www.yiiframework.com/): Official documentation and resources.
+
+- [Yii2 Documentation](https://www.yiiframework.com/doc/guide/2.0/en): Comprehensive documentation for Yii2.
+
+- [Yii2 Extensions](https://www.yiiframework.com/extensions): A collection of Yii2 extensions.
 
 ## When to use:
 
