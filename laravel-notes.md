@@ -11,6 +11,13 @@
 - **Configuration:** Configure the application settings in `.env` and `config` files.
 
 - **Artisan CLI:** Use the Artisan command-line tool for various tasks like migrations, seeding, and generating code.
+## Launch your Laravel project
+
+Open a terminal in the directory of your project, and type:
+```
+php artisan serve
+```
+You will then be given URL that the server is running on.
 
 ## Create a new controller
 
@@ -173,8 +180,8 @@ Test Factories: Create factories for generating test data.
 
 ## Laravel Resources
 
-Laravel Official Documentation: Comprehensive documentation and guides.
+[Laravel Official Documentation: Comprehensive documentation and guides](https://laravel.com/docs/).
 
-Laracasts: Video tutorials and screencasts for learning Laravel.
+[Laracasts: Video tutorials and screencasts for learning Laravel](https://laracasts.com/).
 
-Packagist Laravel Packages: A collection of Laravel packages.
+[Packagist Laravel Packages: A collection of Laravel packages](https://packagist.org/search/?query=Laravel).
