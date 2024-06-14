@@ -6,18 +6,38 @@
 
 ## Laravel Basics
 
-- **Installation:** Install Laravel using Composer by running `composer create-project laravel/laravel project-name`.
+- **Installation:** Install Laravel using Composer by running:
+
+```
+composer create-project laravel/laravel project-name
+```
 
 - **Configuration:** Configure the application settings in `.env` and `config` files.
 
 - **Artisan CLI:** Use the Artisan command-line tool for various tasks like migrations, seeding, and generating code.
+
 ## Launch your Laravel project
 
 Open a terminal in the directory of your project, and type:
+
 ```
 php artisan serve
 ```
+
 You will then be given URL that the server is running on.
+At this stage, you should also make use of the npm packages. Open another terminal and run:
+
+```
+npm install
+```
+
+Once those packages have been install, you can run the npm dev environment, thus:
+
+```
+npm run dev
+```
+
+This includes the Vite server which listens for asset changes in files such as JS and CSS. As a results changes are seen immediatly in the web browser.
 
 ## Create a new controller
 
@@ -133,6 +153,16 @@ Gate::define('update-post', function ($user, $post) {
 });
 ```
 
+### Laravel Breeze
+
+Installing Laravel Breeze starter kit provides all the authentication features, including balde templates styled with Tailwind CSS.
+
+```
+composer require laravel/breeze
+php artisan breeze:install
+npm run dev
+```
+
 ## Forms and Requests
 
 Forms: Create and handle HTML forms with Laravel's form builder.
@@ -177,6 +207,19 @@ PHPUnit Integration: Laravel includes PHPUnit for testing.
 Testing Database: Use an in-memory SQLite database for testing.
 
 Test Factories: Create factories for generating test data.
+
+### Tailwind
+
+Tailwind should automatically be available in your Laravel project. If not, just add it to `postcss.config.js`, thus:
+
+```
+export default {
+    plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
+    },
+};
+```
 
 ## Laravel Resources
 
