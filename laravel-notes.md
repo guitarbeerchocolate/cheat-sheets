@@ -6,10 +6,16 @@
 
 ## Laravel Basics
 
-- **Installation:** Install Laravel using Composer by running:
+### Start using laravel commands
 
 ```
-composer create-project laravel/laravel project-name
+composer global require laravel/installer
+```
+
+- **New project:** Install Laravel using Composer by running:
+
+```
+laravel new project-name
 ```
 
 - **Configuration:** Configure the application settings in `.env` and `config` files.
