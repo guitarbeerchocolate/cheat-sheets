@@ -15,6 +15,10 @@ Brave Search is a privacy-focused search engine that offers powerful features an
 - **OR Operator**: Use `OR` (in uppercase) to broaden results, e.g., Brave OR Chromium.
 - **NOT Operator**: Use `NOT` (in uppercase) to exclude specific terms, e.g., Brave NOT Chrome.
 
+- Quotation marks to search for an exact word or phrase (e.g. Sony camera parts "DCR VX1000")
+- Minus (-) to eliminate results that include a particular word or phrase (e.g. "office -microsoft")
+- Plus (+) to return results that include a particular word or phrase (e.g. eagle +golf)
+
 ## Site-Specific Search
 
 - **Site Operator**: Use `site:` followed by a website URL to search within a specific site, e.g., site:example.com Brave Browser.
@@ -29,7 +33,7 @@ Brave Search is a privacy-focused search engine that offers powerful features an
 
 ## Advanced Search Tips
 
-- **Wildcards**: Use an asterisk (_) as a wildcard for partial word searches, e.g., priv_ for privacy.
+- **Wildcards**: Use an asterisk (\*) as a wildcard for partial word searches, e.g., priv\_ for privacy.
 - **Synonyms**: Use the tilde (~) before a word to include synonyms, e.g., ~fast browser.
 
 ## Specialized Searches
@@ -55,3 +59,21 @@ Brave Search is a privacy-focused search engine that offers powerful features an
 - **Learn More**: Explore Brave Search's documentation for more advanced tips and features.
 
 This Brave Search cheat sheet provides you with advanced search techniques and tips to enhance your searching experience while protecting your privacy.
+
+## Bangs
+
+!bangs in Brave Search can be used directly on Brave Search, as well as in the address bar when Brave Search is set as your default search engine. Here's an example:
+!w hello world
+When entered into Brave Search will search Wikipedia with the query "hello world".
+
+A more extensive list of bangs can be [found here](https://support.brave.com/hc/en-us/articles/4410152384781-What-bangs-can-I-use-in-Brave-Search).
+
+## Use CodeLLM
+
+Brave Search has announced the integration of a new feature, CodeLLM, enhancing search results for programming-related queries.
+
+e.g. Type the following into the Brave's search box:
+
+```
+Provide a PHP script to convert integers into roman numerals
+```
