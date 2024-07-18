@@ -77,3 +77,14 @@ e.g. Type the following into the Brave's search box:
 ```
 Provide a PHP script to convert integers into roman numerals
 ```
+
+### Leo
+
+Leo AI is Mixtral by Mistral AI. Very similar to ChatGPT.
+
+You can enable the Leo sidebar the following way:
+
+- Go to brave://settings
+- Click on the word 'Leo' on the left-hand navigation
+- Click on "Adjust autocomplete suggestions"
+- Select "Always" from the "Show Sidebar" drop-down options
