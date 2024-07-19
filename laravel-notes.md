@@ -485,6 +485,32 @@ public function jobs()
 }
 ```
 
+### Queues (optional)
+
+The database table which supports queues is called `'jobs'`. It's quite common to change this and give it a more meaningful name such as `'queue_jobs'`. To do this go to the `config/queue.php` file and set the new names there. You will then need to change the job migrations to reflect these changes and refresh them as described earlier.
+
+Conceptually, queues look like this:
+
+1. A job is dispatched to a queue. This job could be an email which is about to be sent, or really any kind of function.
+2. The job sits on the queue until a worker can pick it up.
+3. A worker removes the job from the queue and executes it.
+
+A code example for this would be the following:
+
+```
+Mail::to($job->employer->user)->queue(
+    new JobPosted($job)
+);
+```
+
+In the example above, the method `send` is replaced by `queue` i.e. the job is being sent to the queue and a worker will send the mail.
+
+To get workers to take jobs from the queue, run the command:
+
+```
+php artisan queue:work
+```
+
 ## Laravel Resources
 
 [Laravel Official Documentation: Comprehensive documentation and guides](https://laravel.com/docs/).
