@@ -227,6 +227,264 @@ export default {
 };
 ```
 
+## Steps for creating a new functionality
+
+Before we go too far, remember this. Eloquent cleverly makes associations between elements of your application.
+
+In addition to the steps below, you'll probably want to add the laravel debug bar through composer, thus:
+
+```
+composer require barryvdh/laravel-debugbar --dev
+```
+
+### 1. Create the files
+
+```
+php artisan make:model <Yourmodelname> --all
+```
+
+Will generate a migration, seeder, factory, policy, resource controller, and form request classes for the model:
+
+A model within app/Models/
+
+A Factory within database/factories/
+
+A Migration within database/migrations/
+
+A Seeder within database/seeders/
+
+A Store Request within app/Http/Requests/
+
+An Update Request within app/Http/Requests/
+
+A Controller within app/Http/Controllers/
+
+A Policy within app/Policies/
+
+### 2. Add some routes
+
+You can begin by adding, just the routes like this:
+
+```
+Route::get('/yourfunctionality', function () {
+    return 'Basic index get';
+});
+Route::get('/yourfunctionality/create', function () {
+    return 'Basic create';
+});
+Route::post('/yourfunctionality', function () {
+    return 'Basic store';
+});
+Route::get('/yourfunctionality/{yourfunctionalityitem}', function () {
+    return 'Basic show';
+});
+Route::get('/yourfunctionality/{yourfunctionalityitem}/edit', function () {
+    return 'Basic edit';
+});
+Route::patch('/yourfunctionality/{yourfunctionalityitem}', function () {
+    return 'Basic update';
+});
+Route::delete('/yourfunctionality/{yourfunctionalityitem}', function () {
+    return 'Basic destroy';
+});
+```
+
+Then gradually, start adding items returned from your controller, like this:
+
+```
+Route::get('/yourfunctionality', [YourController::class, 'index']);
+Route::get('/yourfunctionality/create', [YourController::class, 'create']);
+Route::post('/yourfunctionality', [YourController::class, 'store'])->middleware('auth');
+Route::get('/yourfunctionality/{yourfunctionalityitem}', [YourController::class, 'show']);
+Route::patch('/yourfunctionality/{yourfunctionalityitem}', [YourController::class, 'update']);
+Route::delete('/yourfunctionality/{yourfunctionalityitem}', [YourController::class, 'destroy']);
+```
+
+While we're at it, let's make associated routes more readable by grouping them thus:
+
+```
+Route::Controller(YourController::class)->group(function()
+{
+    Route::get('/yourfunctionality', 'index');
+    Route::get('/yourfunctionality/create', 'create');
+    Route::post('/yourfunctionality', 'store')->middleware('auth');
+    Route::get('/yourfunctionality/{yourfunctionalityitem}', 'show');
+    Route::patch('/yourfunctionality/{yourfunctionalityitem}', 'update');
+    Route::delete('/yourfunctionality/{yourfunctionalityitem}', 'destroy');
+});
+```
+
+Before proceeding, test that these work.
+
+### 3. Develop our migrations
+
+You should have some idea about what data you want to use with your class. Even if it's not fully formed, you should create something and improve it later.
+
+To create a new migration use:
+
+```
+php artisan make:migration
+```
+
+To push your migration to the database use:
+
+```
+php artisan migrate
+```
+
+If you make changes to your migration and wish to push them to your database use:
+
+```
+php artisan migrate:fresh
+```
+
+To see all options:
+
+```
+php artisan
+```
+
+and look for migrate.
+
+### 4. Develop our model
+
+Now that we have our migration, we can develop our model a little.
+When we created the files in step 1, a factory was one of them. As a result, the new model contains a refence to it through `use HasFactory;`
+, thus:
+
+```
+class YourModel extends Model {
+    use HasFactory;
+}
+```
+
+Laravel by default, assumes that this model will be used to work with a table called your_model, as described in the migration.
+
+You can make sure of this through an override such as:
+
+```
+class JobListing extends Model {
+    use HasFactory;
+    protected $table = 'your_model';
+}
+```
+
+$fillable is an array containing all table fields that can be mass-assigned through the create and update methods.
+
+$guarded is an array of fields that should not be mass-assigned. By default, it contains all model attributes, acting as a blacklist.
+
+When using the create or update methods, Laravel checks if the incoming data only contains the fields listed in the $fillable array or if it doesn't contain the fields listed in the $guarded array. If not, it will throw a MassAssignmentException. This helps ensure that only intended fields are updated, protecting your application from unwanted modifications.
+
+```
+class YourModel extends Model {
+    use HasFactory;
+    protected $table = 'job_listing';
+    protected $fillable = ['title','salary'];
+}
+```
+
+The created_at, and updated_at fields are automatically created and updated by laravel.
+
+### 5. Develop the factory
+
+A factory is used to create example (or "fake") data for your database.
+
+Match the items returned from the `function definition()` to your migration.
+
+Foreign keys can be added by adding the mode to which they refer e.g.
+
+```
+'user_id' => User::factory()
+```
+
+### 6. Develop a seeder for your factory
+
+Open the seed file created in step 1.
+Develop the function run thus:
+
+```
+public function run(): void
+{
+    YourModel::factory(200)->create();
+}
+```
+
+When this seeder is run it will create 200 records according to the definitions of its factory. To run all the seeders:
+
+```
+php artisan db:seed
+```
+
+To run just 1 seeder:
+
+```
+php artisan db:seed --class=YourSeederName
+```
+
+### 7. Develop relationships within models
+
+Imagine we have a model for Job, and another model for Employer.
+Each Job belongs to an employer, i.e. a Job can only have one employer. You can therefore create a function for employer within the Job model, thus:
+
+```
+public function employer()
+{
+    return $this->belongsTo(Employer::class);
+}
+```
+
+In this example, an employer can have many jobs and so we can apply a similar function for jobs within the employer model, thus:
+
+```
+public function jobs()
+{
+    return $this->hasMany(Job::class);
+}
+```
+
+### 8. Develop pivot tables (optional)
+
+Imagine you have 2 tables. 1 table contains jobs, the other contains tags. You might need a third table to connect the 2, so that you can have a record of all the tags for a job. This is called a pivot table.
+
+You can add the migration code to either the job or tag migrations, but it's useful to name the pivot table with the 2 related tables e.g. job_tag. Therefore the migration code would look like this:
+
+```
+Schema::create('job_tag', function (Blueprint $table) {
+    $table->id();
+    $table->foreignIdFor(\App\Models\Job::class, 'job_id')->constrained()->cascadeOnDelete();
+    $table->foreignIdFor(\App\Models\Tag::class, 'tag_id')->constrained()->cascadeOnDelete();
+    $table->timestamps();
+});
+```
+
+In this example, `$table->foreignIdFor(\App\Models\Job::class, 'job_id')` creates a foreign key column `'job_id'` that references the primary key of the `'jobs'` table.
+
+The `constrained()` method adds a foreign key constraint, and `cascadeOnDelete()` ensures that when a job is deleted, all related records in the 'job_tag' table are also deleted.
+
+`$table->foreignIdFor(\App\Models\Tag::class, 'tag_id')` creates a foreign key column `'tag_id'` that references the primary key of the `'tags'` table. Similar to the `'job_id'` column, it adds a foreign key constraint and cascades deletes.
+
+`$table->timestamps()` creates two timestamp columns `'created_at'` and `'updated_at'` to store the creation and update timestamps for each record.
+
+This migration creates a **many-to-many** relationship table for the `'jobs'` and `'tags'` tables, allowing jobs to have multiple tags and vice versa.
+
+We also have work to do in our Job model, and Tag model to support this. In the Job model apply a function tags, thus:
+
+```
+public function tags()
+{
+    return $this->belongsToMany(Tag::class);
+}
+```
+
+In the Tag model apply a function job, thus:
+
+```
+public function jobs()
+{
+    return $this->belongsToMany(Job::class);
+}
+```
+
 ## Laravel Resources
 
 [Laravel Official Documentation: Comprehensive documentation and guides](https://laravel.com/docs/).
