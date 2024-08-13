@@ -34,7 +34,7 @@ You will then be given URL that the server is running on.
 At this stage, you should also make use of the npm packages. Open another terminal and run:
 
 ```
-npm install
+npm i
 ```
 
 Once those packages have been install, you can run the npm dev environment, thus:
@@ -43,7 +43,15 @@ Once those packages have been install, you can run the npm dev environment, thus
 npm run dev
 ```
 
-This includes the Vite server which listens for asset changes in files such as JS and CSS. As a results changes are seen immediatly in the web browser.
+This includes the Vite server which listens for asset changes in files such as JS and CSS. To have blade content automatically update in the browser when saved...
+
+In the HTML->HEAD tag of your blade template file add the vite directive, thus:
+
+```
+@vite(['resources/css/app.css', 'resources/js/app.js'])
+```
+
+As a results changes are seen immediately in the web browser. You may need to re-run `npm run dev` for this to take effect.
 
 ## Create a new controller
 
