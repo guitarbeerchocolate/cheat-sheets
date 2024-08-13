@@ -200,13 +200,15 @@ blade.php
 As each field contains validation in our controller, validation errors can be returned to the form, thus:
 
 ```
-<input type="text" name="username" class="input" />
+<input type="text" name="username" class="input" value="{{ old('username') }}" />
 @error('username')
-    {{ $message }}
+    <p class="error">{{ $message }}</p>
 @enderror
 ```
 
 The above would display, in the form, what the validation error was for the field `username`.
+
+Notice also, the inclusion of `value="{{ old('username') }}"`. This is to retain the `username` if the form fails validation, so that we don't have to re-type it.
 
 Middleware
 Custom Middleware: Create custom middleware for handling specific tasks in the request-response cycle.
