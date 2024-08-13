@@ -337,6 +337,20 @@ Route::Controller(YourController::class)->group(function()
 });
 ```
 
+#### Quick Routes for CRUD
+
+Another quick way to create Routes for your CRUD controller is to simply add a line, thus:
+
+```
+Route::resource('posts', PostController::class);
+```
+
+If your PostController class contains all the CRUD methods, then using the line above, Laravel will create all the Routes needed to support those methods. You should be able to see these using the command:
+
+```
+php artisan route:list
+```
+
 Before proceeding, test that these work.
 
 ### 3. Develop our migrations
@@ -533,6 +547,17 @@ To get workers to take jobs from the queue, run the command:
 ```
 php artisan queue:work
 ```
+
+## @auth and @guest directives
+
+A blade file can contain @auth and @guest directives. These can show content to the user based on their authentication status, thus:
+@auth
+
+<h1>You see this because you are authenticated</h1>
+@endauth
+@guest
+<h1>You see this because you are a guest</h1>
+@endguest
 
 ## Laravel Resources
 
