@@ -195,6 +195,19 @@ blade.php
 </form>
 ```
 
+### Showing validation errors
+
+As each field contains validation in our controller, validation errors can be returned to the form, thus:
+
+```
+<input type="text" name="username" class="input" />
+@error('username')
+    {{ $message }}
+@enderror
+```
+
+The above would display, in the form, what the validation error was for the field `username`.
+
 Middleware
 Custom Middleware: Create custom middleware for handling specific tasks in the request-response cycle.
 
