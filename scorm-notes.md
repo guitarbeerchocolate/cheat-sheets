@@ -1,36 +1,21 @@
 # SCORM Cheat Sheet
 
-SCORM (Sharable Content Object Reference Model) is a set of technical standards for eLearning software products. It ensures that content can be shared across different Learning Management Systems (LMS) in a standardized format.
+SCORM (Sharable Content Object Reference Model) is a set of technical standards for eLearning software products, ensuring compatibility across different LMS platforms. This cheat sheet outlines key concepts, the SCORM API, data models, and common functions for working with SCORM.
 
 ---
 
 ## Table of Contents
 
-- [What is SCORM?](#what-is-scorm)
 - [SCORM Versions](#scorm-versions)
-  - [SCORM 1.2](#scorm-12)
-  - [SCORM 2004](#scorm-2004)
-- [SCORM Components](#scorm-components)
-  - [Content Package](#content-package)
-  - [Manifest File (imsmanifest.xml)](#manifest-file-imsmanifestxml)
-- [SCORM API](#scorm-api)
-  - [Common SCORM API Functions](#common-scorm-api-functions)
-  - [Example: Retrieve Learner's Score](#example-retrieve-learners-score)
-  - [Example: Ending the SCORM Session](#example-ending-the-scorm-session)
+- [SCORM API Overview](#scorm-api-overview)
 - [SCORM Data Model](#scorm-data-model)
   - [SCORM 1.2 Data Model](#scorm-12-data-model)
   - [SCORM 2004 Data Model](#scorm-2004-data-model)
-- [SCORM Packaging](#scorm-packaging)
-- [Testing SCORM Packages](#testing-scorm-packages)
-- [SCORM Best Practices](#scorm-best-practices)
-
----
-
-## What is SCORM?
-
-- **SCORM** is a set of technical standards used for eLearning software products.
-- It ensures that digital content (courses, assessments) can work on different LMS platforms.
-- SCORM allows the tracking of learners’ progress, scores, completion, and more through a standardized data model.
+- [Common SCORM API Functions](#common-scorm-api-functions)
+- [Error Handling](#error-handling)
+- [Examples](#examples)
+  - [Retrieve Learner’s Score](#retrieve-learner-score-example)
+  - [Ending a SCORM Session](#ending-a-scorm-session-example)
 
 ---
 
@@ -38,156 +23,129 @@ SCORM (Sharable Content Object Reference Model) is a set of technical standards 
 
 ### SCORM 1.2
 
-- Released in 2001 and widely used.
-- Simple data model, but lacks advanced tracking.
-- Main limitations: Limited sequencing and navigation capabilities.
+- Released in 2001, this is the most widely adopted SCORM version.
+- Limited support for tracking learner interactions and content navigation.
 
 ### SCORM 2004
 
-- Released in 2004 with enhanced features.
-- Supports **sequencing** and **navigation controls**.
-- Provides improved tracking capabilities (e.g., detailed interactions and objectives).
+- Introduced in 2004 with enhanced tracking capabilities.
+- Supports sequencing and navigation, more granular tracking of learner interactions, and greater flexibility with objectives.
 
 ---
 
-## SCORM Components
+## SCORM API Overview
 
-### Content Package
+SCORM uses a **JavaScript API** that allows content (SCOs) to communicate with the LMS. The API manages data such as the learner’s progress, score, and session time.
 
-- A SCORM package is a **ZIP file** that contains:
-  - HTML, JS, or multimedia files for course content.
-  - A manifest file (`imsmanifest.xml`) to define the course structure.
+Key API methods:
 
-### Manifest File (imsmanifest.xml)
-
-- **imsmanifest.xml** is the heart of any SCORM package.
-- It defines:
-  - Metadata about the course.
-  - The structure of the course (modules, lessons, etc.).
-  - Resource files and interactions with the LMS.
-
-Example manifest file:
-
-```xml
-<manifest>
-  <metadata>
-    <schema>ADL SCORM</schema>
-    <schemaversion>1.2</schemaversion>
-  </metadata>
-  <organizations>
-    <organization>
-      <item identifier="Item1">
-        <title>Lesson 1</title>
-        <resource identifierref="Resource1" />
-      </item>
-    </organization>
-  </organizations>
-  <resources>
-    <resource identifier="Resource1" href="index.html" />
-  </resources>
-</manifest>
-```
-
----
-
-## SCORM API
-
-SCORM content interacts with the LMS using JavaScript through a SCORM-compliant API. The API enables tracking of progress, scores, completion, etc.
-
-### Common SCORM API Functions
-
-| **Function**                | **Description**                                                      |
-| --------------------------- | -------------------------------------------------------------------- |
-| `LMSInitialize("")`         | Initializes communication with the LMS (SCORM 1.2).                  |
-| `Initialize("")`            | Initializes communication with the LMS (SCORM 2004).                 |
-| `LMSGetValue(key)`          | Retrieves a value from the LMS (e.g., `cmi.core.lesson_status`).     |
-| `LMSSetValue(key, value)`   | Sends a value to the LMS (e.g., completion status, learner's score). |
-| `LMSCommit("")`             | Saves data to the LMS after `LMSSetValue()` is called.               |
-| `LMSFinish("")`             | Ends communication with the LMS (SCORM 1.2).                         |
-| `Terminate("")`             | Ends communication with the LMS (SCORM 2004).                        |
-| `GetLastError()`            | Returns the error code from the last SCORM operation.                |
-| `GetErrorString(errorCode)` | Returns a string describing the error code.                          |
-
-### Example: Retrieve Learner's Score
-
-```js
-var score = scormAPI.LMSGetValue("cmi.core.score.raw"); // Retrieve the learner's raw score
-console.log("Learner's score: " + score);
-```
-
-### Example: Ending the SCORM Session
-
-**For SCORM 1.2**:
-
-```js
-scormAPI.LMSFinish(""); // End SCORM session (SCORM 1.2)
-```
-
-**For SCORM 2004**:
-
-```js
-scormAPI.Terminate(""); // End SCORM session (SCORM 2004)
-```
+- **Initialize** (`LMSInitialize()` for SCORM 1.2, `Initialize()` for SCORM 2004)
+- **Terminate** (`LMSFinish()` for SCORM 1.2, `Terminate()` for SCORM 2004)
+- **Get and Set Data** (`LMSGetValue()`, `LMSSetValue()` for SCORM 1.2; `GetValue()`, `SetValue()` for SCORM 2004)
 
 ---
 
 ## SCORM Data Model
 
-The SCORM data model consists of a collection of data elements (e.g., scores, completion status, time spent) that are exchanged between the LMS and the SCORM content.
+The SCORM data model consists of elements that are used to store and retrieve data. The most common elements include learner information, scores, completion status, and more.
 
 ### SCORM 1.2 Data Model
 
-| **Data Model Element**     | **Description**                                                              |
-| -------------------------- | ---------------------------------------------------------------------------- |
-| `cmi.core.student_id`      | The learner's ID in the LMS.                                                 |
-| `cmi.core.student_name`    | The learner's full name.                                                     |
-| `cmi.core.lesson_status`   | Indicates if the lesson is `completed`, `incomplete`, `passed`, or `failed`. |
-| `cmi.core.score.raw`       | The learner's raw score (usually 0-100).                                     |
-| `cmi.core.total_time`      | The total time spent in the course.                                          |
-| `cmi.core.lesson_location` | Bookmarking: Where the learner last left off.                                |
-| `cmi.suspend_data`         | Stores data allowing the learner to resume from where they left off.         |
+| **Element**                | **Description**                                   |
+| -------------------------- | ------------------------------------------------- |
+| `cmi.core.student_id`      | The learner's ID.                                 |
+| `cmi.core.student_name`    | The learner's name.                               |
+| `cmi.core.lesson_location` | Bookmark: the location the learner left off.      |
+| `cmi.core.lesson_status`   | Status of the lesson (`completed`, `incomplete`). |
+| `cmi.core.score.raw`       | The learner's score (0-100).                      |
+| `cmi.core.total_time`      | The total time spent in the course.               |
+| `cmi.suspend_data`         | Stores information to resume the session.         |
 
 ### SCORM 2004 Data Model
 
-| **Data Model Element**  | **Description**                                                           |
-| ----------------------- | ------------------------------------------------------------------------- |
-| `cmi.learner_id`        | The learner's unique ID in the LMS.                                       |
-| `cmi.learner_name`      | The learner's full name.                                                  |
-| `cmi.success_status`    | Indicates if the learner passed or failed (`passed`, `failed`).           |
-| `cmi.completion_status` | Indicates if the course is `completed`, `incomplete`, or `not attempted`. |
-| `cmi.score.scaled`      | Learner's score represented as a decimal (0.0 to 1.0).                    |
-| `cmi.total_time`        | The total time the learner has spent in the course.                       |
-| `cmi.location`          | Bookmarking: Stores the learner’s last position in the course.            |
-| `cmi.suspend_data`      | Used to allow resuming the course from where the learner left off.        |
-| `cmi.interactions`      | Tracks learner interactions (e.g., quiz responses).                       |
+| **Element**             | **Description**                                     |
+| ----------------------- | --------------------------------------------------- |
+| `cmi.learner_id`        | The learner's unique ID.                            |
+| `cmi.learner_name`      | The learner's full name.                            |
+| `cmi.location`          | Bookmark: where the learner left off.               |
+| `cmi.completion_status` | `completed`, `incomplete`, `not attempted`.         |
+| `cmi.success_status`    | `passed` or `failed`.                               |
+| `cmi.score.scaled`      | Learner’s score represented as a decimal (0.0-1.0). |
+| `cmi.suspend_data`      | Data to resume the session.                         |
+| `cmi.interactions`      | Tracks quiz questions and learner interactions.     |
 
 ---
 
-## SCORM Packaging
+## Common SCORM API Functions
 
-SCORM content is packaged in a **ZIP file** containing the following:
-
-1. **imsmanifest.xml** (mandatory): Defines course structure, resources, and metadata.
-2. **Course content**: HTML files, JavaScript, multimedia, and any other assets required.
-3. **Resources folder**: Contains images, videos, etc.
+| **Function**                | **Description**                                      |
+| --------------------------- | ---------------------------------------------------- |
+| `LMSInitialize("")`         | Initializes communication with the LMS (SCORM 1.2).  |
+| `Initialize("")`            | Initializes communication with the LMS (SCORM 2004). |
+| `LMSFinish("")`             | Ends communication with the LMS (SCORM 1.2).         |
+| `Terminate("")`             | Ends communication with the LMS (SCORM 2004).        |
+| `LMSGetValue(key)`          | Retrieves a value from the LMS.                      |
+| `LMSSetValue(key, value)`   | Sends a value to the LMS (e.g., score, completion).  |
+| `LMSCommit("")`             | Saves data to the LMS (SCORM 1.2).                   |
+| `Commit("")`                | Saves data to the LMS (SCORM 2004).                  |
+| `GetLastError()`            | Returns the error code from the last API call.       |
+| `GetErrorString(errorCode)` | Returns a human-readable description of the error.   |
+| `GetDiagnostic(errorCode)`  | Returns more detailed information on an error.       |
 
 ---
 
-## Testing SCORM Packages
+## Error Handling
 
-- **SCORM Cloud**: A free tool used to test SCORM packages in a SCORM-compliant environment.
-- **LMS Upload**: Upload the SCORM package to the LMS you are using to verify compatibility and tracking.
-- **Browser Developer Tools**: Use the console to debug SCORM API calls when testing in an LMS.
+SCORM uses a set of predefined error codes. When a SCORM API function fails, use `GetLastError()`, `GetErrorString()`, and `GetDiagnostic()` to retrieve details.
+
+- `0`: No error.
+- `101`: General exception.
+- `201`: Invalid argument error.
+- `202`: Element cannot have children.
+- `301`: Not initialized (API not initialized before calling other functions).
+
+Example for error handling:
+
+```js
+var errorCode = scormAPI.GetLastError();
+if (errorCode !== "0") {
+  console.log(scormAPI.GetErrorString(errorCode));
+}
+```
 
 ---
 
-## SCORM Best Practices
+## Examples
 
-- **Modular Content**: Break content into smaller SCOs (Sharable Content Objects) for reusability.
-- **Error Handling**: Always check for errors using `GetLastError()` and handle them properly.
-- **Testing**: Test your SCORM package in different LMS environments (SCORM Cloud is great for this).
-- **Suspend Data**: Use `cmi.suspend_data` to track learner progress and allow them to resume later.
-- **Version Choice**: Choose **SCORM 2004** if you need more detailed tracking (interactions, objectives). Choose **SCORM 1.2** for simpler needs and wider compatibility.
+### Retrieve Learner’s Score Example
+
+```js
+var learnerScore = scormAPI.LMSGetValue("cmi.core.score.raw");
+console.log("Learner's score is: " + learnerScore);
+```
+
+### Ending a SCORM Session Example
+
+**For SCORM 1.2:**
+
+```js
+scormAPI.LMSFinish("");
+```
+
+**For SCORM 2004:**
+
+```js
+scormAPI.Terminate("");
+```
+
+---
+
+## Best Practices
+
+- **Use Suspend Data**: To support resuming sessions, store and retrieve state information using `cmi.suspend_data`.
+- **Test Across LMSs**: SCORM may behave differently on various LMS platforms, so test extensively.
+- **Avoid Long Sessions**: Regularly commit data to the LMS to prevent data loss during long sessions (`LMSCommit()` / `Commit()`).
+- **Track Progress**: Use `cmi.core.lesson_status` to track learner progress and completion.
 
 ---
 
@@ -195,8 +153,4 @@ SCORM content is packaged in a **ZIP file** containing the following:
 
 - [SCORM Explained](https://scorm.com/scorm-explained/)
 - [SCORM Cloud](https://cloud.scorm.com/)
-- [ADL SCORM Documentation](https://www.adlnet.gov/scorm/)
-
----
-
-This SCORM cheat sheet provides a quick reference to the SCORM API, data models, and best practices. It will help you get started with SCORM or brush up on key concepts for developing SCORM-compliant courses.
+- [ADL SCORM Documentation](https://adlnet.gov/scorm/)
