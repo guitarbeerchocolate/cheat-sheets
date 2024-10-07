@@ -171,7 +171,7 @@ Inside the db directory, create a install.php file to define the database tables
 ```
 <?php
 function xmldb_block_hello_username_install() {
-  // No database changes required for this block.
+  // No database changes required for this block
 }
 ```
 
