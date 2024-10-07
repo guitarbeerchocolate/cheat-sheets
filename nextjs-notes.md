@@ -1,32 +1,5 @@
 # Next.js 14 Cheat Sheet
 
-Almost all titles have links to the oficial NextJS documentation!
-
-## Summary
-
-- [ ] [01 - Creating a new project](https://gist.github.com/lucasKoyama/7545e28e857a8045976ab9988d0b0353#creating-a-new-project)
-  - [ ] [1.1 - CLI to create](https://gist.github.com/lucasKoyama/7545e28e857a8045976ab9988d0b0353#cli-to-create)
-  - [ ] [1.2 - Going to folder](https://gist.github.com/lucasKoyama/7545e28e857a8045976ab9988d0b0353#going-to-folder)
-  - [ ] [1.3 - Installing modules](https://gist.github.com/lucasKoyama/7545e28e857a8045976ab9988d0b0353#installing-modules)
-  - [ ] [1.4 - Running dev. server](https://gist.github.com/lucasKoyama/7545e28e857a8045976ab9988d0b0353#running-dev-server)
-- [ ] [02 - NextJS folders Structure](https://gist.github.com/lucasKoyama/7545e28e857a8045976ab9988d0b0353#nextjs-folders-structure)
-- [ ] [03 - NextJS CSS](https://gist.github.com/lucasKoyama/7545e28e857a8045976ab9988d0b0353#nextjs-css)
-- [ ] [04 - Image optimization](https://gist.github.com/lucasKoyama/7545e28e857a8045976ab9988d0b0353#image-optimization)
-- [ ] [05 - Routing & Layout](https://gist.github.com/lucasKoyama/7545e28e857a8045976ab9988d0b0353#routing--layout)
-- [ ] [06 - Link component and navigation optimization](https://gist.github.com/lucasKoyama/7545e28e857a8045976ab9988d0b0353#link-component-and-navigation-optimization)
-- [ ] [07 - Server Components to fetch data](https://gist.github.com/lucasKoyama/7545e28e857a8045976ab9988d0b0353#server-components-to-fetch-data)
-- [ ] [08 - Requests optimization](https://gist.github.com/lucasKoyama/7545e28e857a8045976ab9988d0b0353#requests-optimization)
-- [ ] [09 - Rendering Static vs Dynamic](https://gist.github.com/lucasKoyama/7545e28e857a8045976ab9988d0b0353#rendering-static-vs-dynamic)
-  - [ ] [09.1 - Static Rendering](https://gist.github.com/lucasKoyama/7545e28e857a8045976ab9988d0b0353#static-rendering)
-  - [ ] [09.2 - Dynamic Rendering](https://gist.github.com/lucasKoyama/7545e28e857a8045976ab9988d0b0353#dynamic-rendering)
-- [ ] [10 - Loading.tsx & Skeletons Loading](https://gist.github.com/lucasKoyama/7545e28e857a8045976ab9988d0b0353#loadingtsx--skeletons-loading)
-- [ ] [11 - Searching](https://gist.github.com/lucasKoyama/7545e28e857a8045976ab9988d0b0353#searching)
-- [ ] [12 - Mutating Data - "CRUD"](https://gist.github.com/lucasKoyama/7545e28e857a8045976ab9988d0b0353#mutating-data---crud)
-- [ ] [13 - revalidatePath Fresh Data fetching](https://gist.github.com/lucasKoyama/7545e28e857a8045976ab9988d0b0353#revalidatepath-fresh-data-fetching)
-- [ ] [14 - Errors and NotFound](https://gist.github.com/lucasKoyama/7545e28e857a8045976ab9988d0b0353#errors-and-notfound)
-- [ ] [15 - Metadata and SEO](https://gist.github.com/lucasKoyama/7545e28e857a8045976ab9988d0b0353#metadata-and-seo)
-- [ ] [16 - Checklist to optimize pages](https://gist.github.com/lucasKoyama/7545e28e857a8045976ab9988d0b0353#checklist-to-optimize-pages)
-
 ### [Creating a new project](https://nextjs.org/learn/dashboard-app/getting-started#creating-a-new-project)
 
 #### CLI to create
@@ -66,9 +39,6 @@ Use the `<Image/>` component with the width and height equal to the aspect ratio
 
 ### [Routing & Layout](https://nextjs.org/learn/dashboard-app/creating-layouts-and-pages#nested-routing)
 
-![image](https://gist.github.com/assets/121680414/e5a2725b-e1c9-4cc9-abcb-12f453ef9bfd)
-![image](https://gist.github.com/assets/121680414/96caf904-3852-4e76-ad36-e18722067c8e)
-
 <p>Each `folder` is a route, inside the folder you need a `page.tsx` which will be the "`index.html`", the `layout.tsx` will be some standard layouts for the page.</p>
 
 ### [Link component and navigation optimization](https://nextjs.org/learn/dashboard-app/navigating-between-pages#the-link-component)
@@ -81,7 +51,6 @@ Use `async` in the function `Page()` and then use an await to fetch some data di
 
 ### [Requests optimization](https://nextjs.org/learn/dashboard-app/fetching-data#what-are-request-waterfalls)
 
-![image](https://gist.github.com/assets/121680414/5c5fc509-9a5d-472b-afd1-bf7158c8cc5f)
 Use `Promise.all([Promise1, Promise2, Promise3])` for parallel data fetching
 
 ### Rendering Static vs Dynamic
@@ -108,8 +77,6 @@ Use the `noStore()` inside the **server components** or inside the **async funct
 - `loading.tsx` is a special Next.js file, it s**how as a replacement while page content loads**.
 - Inside it can be rendered static content like "loading skeletons"
 - To avoid the `loading.tsx` rendering in other sub-routes, move the `page.tsx` and `loading.tsx` to a folder with `(` `)`
-  ![image](https://gist.github.com/assets/121680414/0851e209-77ff-4732-8362-028da966feff)
-  ![image](https://gist.github.com/assets/121680414/772f9c43-096c-4b1c-ad9b-08028640ce52)
   Contents like `CardWrapper`, `RevenueChart` and `LatestInvoices` are the components with data being fetched, while the data is streaming the `Suspense` loads the `skeletons` which are just the prototype structures of the UI
 
 ### [Searching](https://nextjs.org/learn/dashboard-app/adding-search-and-pagination#why-use-url-search-params)
